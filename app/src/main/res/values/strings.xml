@@ -3,4 +3,7 @@
     <string name="donwloadzy">Donwloadzy</string>
     <string name="Example_Link">Example: https://www.chosic.com/download-audio/59055/</string>
     <string name="download">Download</string>
+    <string name="downloading">Downloading...</string>
+    <string name="download_process">Pleas wait until the download process is done</string>
+    <string name="stop_download">Stop Download</string>
 </resources>

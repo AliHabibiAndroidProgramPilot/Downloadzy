@@ -10,4 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="startGradient">#DEE4EA</color>
     <color name="endGradient">#BDBDBD</color>
+    <color name="Hard_white">#C5C5C5</color>
+    <color name="green">#007A00</color>
 </resources>

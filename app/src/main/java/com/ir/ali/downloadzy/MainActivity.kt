@@ -1,7 +1,6 @@
 package com.ir.ali.downloadzy
 
 import android.app.DownloadManager
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -12,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.widget.Toast
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_FADE
 import com.google.android.material.snackbar.Snackbar
 import com.ir.ali.downloadzy.databinding.ActivityMainBinding
+import com.ir.ali.downloadzy.databinding.DownloadBottomSheetDialogBinding
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -24,8 +26,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.downloadButton.setOnClickListener {
-            if (isConnected()) download()
-           else showSnackBar()
+            if (isConnected()) {
+                //download()
+                showBottomSheetDialog()
+            } else
+                showSnackBar()
+        }
+    }
+
+    private fun showBottomSheetDialog() {
+        val sheetDialog = BottomSheetDialog(this)
+        val view = DownloadBottomSheetDialogBinding.inflate(layoutInflater)
+        sheetDialog.setContentView(view.root)
+        sheetDialog.setCancelable(false)
+        sheetDialog.create()
+        sheetDialog.show()
+        view.stopDownload.setOnClickListener {
+
         }
     }
     private fun isConnected(): Boolean {
