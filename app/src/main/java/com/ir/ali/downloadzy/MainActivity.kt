@@ -1,13 +1,19 @@
 package com.ir.ali.downloadzy
 
 import android.app.DownloadManager
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.provider.Settings
+import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_FADE
+import com.google.android.material.snackbar.Snackbar
 import com.ir.ali.downloadzy.databinding.ActivityMainBinding
 import java.net.URL
 
@@ -19,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.downloadButton.setOnClickListener {
             if (isConnected()) download()
-           //else TODO("Snack bar")
+           else showSnackBar()
         }
     }
     private fun isConnected(): Boolean {
@@ -44,5 +50,15 @@ class MainActivity : AppCompatActivity() {
         downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
         // Final Implementation and take out download id to use it later
         val downloadId = downloadManager.enqueue(downloadRequest)
+    }
+    private fun showSnackBar() {
+        val snackBar = Snackbar.make(binding.root, "No Internet Connection", Snackbar.LENGTH_LONG)
+        snackBar.setAction("Cancel") { snackBar.dismiss() }
+        snackBar.setAction("Open Setting") {
+            startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+            recreate()
+        }
+        snackBar.animationMode = ANIMATION_MODE_FADE
+        snackBar.show()
     }
 }
