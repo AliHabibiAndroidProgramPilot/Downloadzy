@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="low_white">#DCD0D0D0</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="startGradient">#DEE4EA</color>
+    <color name="endGradient">#BDBDBD</color>
 </resources>
