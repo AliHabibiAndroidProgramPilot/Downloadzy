@@ -53,11 +53,10 @@ class MainActivity : AppCompatActivity() {
     }
     private fun showSnackBar() {
         val snackBar = Snackbar.make(binding.root, "No Internet Connection", Snackbar.LENGTH_LONG)
-        snackBar.setAction("Cancel") { snackBar.dismiss() }
         snackBar.setAction("Open Setting") {
             startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
-            recreate()
         }
+        snackBar.setActionTextColor(Color.rgb(181, 181, 181))
         snackBar.animationMode = ANIMATION_MODE_FADE
         snackBar.show()
     }
